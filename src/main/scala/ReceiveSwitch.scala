@@ -6,6 +6,7 @@ import akka.event.Logging
  */
 
 // junius example to show how to change the behavior of actor's receiver.
+// The term is HotSwap for receive switch.
 private class Actor3 extends Actor{
   // junius must import context. become belongs to this package.
   import context._

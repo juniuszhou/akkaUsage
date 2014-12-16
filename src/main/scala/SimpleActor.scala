@@ -11,6 +11,25 @@ import scala.collection.immutable.Iterable
 import scala.concurrent.ExecutionContextExecutor
 import scala.concurrent.duration.Duration
 
+/*
+General Tips for AKKA usage.
+
+要尽量避免在一个 actor 中关闭另一个 actor,这可能会引起 Bug 和条件竞争。
+! 消息一定要采用不可变的对象,在 scala 中不可变对象有 String、Int、Double
+等的对象,还有 case class 类型的对象,以及 scala.Tuple2、scala.List 和
+scala.Map 类型的对象。
+! 出于性能的考虑,发送消息尽量采用“!”(tell),除非有必要才使用“?”
+(ask)。
+! 由于 AKKA 邮件先进先出的机制,任何系统或配置产生的系统消息,未必
+会第一时间被 receive 方法处理,可能排在其它消息后面被处理。
+! 初始化 Actor 可以通过消息的方式,配合 stack、become 等方法,但是要尽
+量避免使用。
+! 开发 Actor 程序时,一般采用 one-for-one 容错机制,有特殊需求才使
+用 all-for-one 容错机制。
+! 尽量避免使用除 actor 以外的同步机制,例如 sychronized、 thread 和 lock 等。
+! Actor 类最好是无状态的。
+
+ */
 private class Actor1 extends Actor{
   val log = Logging(context.system, this)
   def receive = {
