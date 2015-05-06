@@ -1,5 +1,8 @@
+package BasicActor
+
 import akka.actor.SupervisorStrategy.Restart
 import akka.actor._
+
 import scala.concurrent.duration._
 /*
   one for one, if an actor is down, it supervisor just restart it.

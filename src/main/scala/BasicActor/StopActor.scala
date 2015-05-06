@@ -1,9 +1,8 @@
+package BasicActor
+
+import akka.actor.{ActorSystem, Props}
 import akka.actor._
 import akka.event.Logging
-
-/**
- * Created by junius on 14-12-8.
- */
 
 private class Actor8 extends Actor{
   val log = Logging(context.system, this)
@@ -27,7 +26,7 @@ object StopActor {
     actor1 ! Kill
 
     // or terminate (shutdown is deprecated.) whole actor system. then all actors will stop.
-    system.terminate()
+    system.shutdown()
   }
 
 }

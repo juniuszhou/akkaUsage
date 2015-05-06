@@ -1,4 +1,6 @@
-import akka.actor.{Props, ActorSystem}
+package BasicActor
+
+import akka.actor.ActorSystem
 
 /**
  * Created by junius on 14-12-13.

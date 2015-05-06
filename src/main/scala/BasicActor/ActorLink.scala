@@ -1,5 +1,6 @@
-import akka.actor.{Props, ActorSystem, Actor}
-import akka.event.Logging
+package BasicActor
+
+import akka.actor.{Actor, ActorSystem, Props}
 
 /**
  * Created by junius on 14-12-9.

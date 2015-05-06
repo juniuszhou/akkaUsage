@@ -1,6 +1,7 @@
-import akka.actor.{AllForOneStrategy, Actor, OneForOneStrategy}
-import akka.event.Logging
+package BasicActor
+
 import akka.actor.SupervisorStrategy._
+import akka.actor.{Actor, AllForOneStrategy, OneForOneStrategy}
 
 import scala.concurrent.duration._
 

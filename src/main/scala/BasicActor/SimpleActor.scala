@@ -1,15 +1,10 @@
 /**
  * Created by junius on 14-12-6.
  */
-package main.scala
+package BasicActor
 
-import akka.actor.Actor.Receive
 import akka.actor._
 import akka.event.Logging
-
-import scala.collection.immutable.Iterable
-import scala.concurrent.ExecutionContextExecutor
-import scala.concurrent.duration.Duration
 
 /*
 General Tips for AKKA usage.

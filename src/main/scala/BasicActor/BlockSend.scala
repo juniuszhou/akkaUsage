@@ -1,12 +1,13 @@
-import akka.actor.{Props, ActorSystem, Actor}
+package BasicActor
+
+import akka.actor.{Actor, ActorSystem, Props}
 import akka.event.Logging
 import akka.pattern.{ask, pipe}
 import akka.util.Timeout
 
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 import scala.concurrent.duration._
-
-import scala.concurrent.{ExecutionContext, Future}
-import ExecutionContext.Implicits.global
 /**
  * Created by junius on 14-12-7.
  */

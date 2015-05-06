@@ -1,4 +1,6 @@
-import akka.actor.{Props, ActorSystem, Actor}
+package BasicActor
+
+import akka.actor.{Actor, ActorSystem, Props}
 import akka.event.Logging
 
 /**
@@ -29,7 +31,7 @@ object ActorLog {
     val system = ActorSystem("Demo")
     val actor1 = system.actorOf(Props[Actor10], name = "Actor1")
     actor1 ! "test"
-    system.terminate()
+    system.shutdown()
 
   }
 }

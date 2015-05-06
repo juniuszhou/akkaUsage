@@ -1,9 +1,9 @@
+package BasicActor
+
 /**
  * Created by junius on 14-12-7.
  */
 import akka.actor.Actor
-import akka.util.Timeout
-import scala.concurrent.duration
 
 class LifeActor extends Actor {
   context.setReceiveTimeout(30, scala.concurrent.duration.MILLISECONDS)

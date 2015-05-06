@@ -96,7 +96,7 @@ object MyTypedActor {
 
     val res2: Option[Int] = calc.incAndReture()
     println(res2.get)
-    system.terminate()
+    system.shutdown()
   }
 
 }

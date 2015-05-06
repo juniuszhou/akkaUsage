@@ -1,3 +1,5 @@
+package BasicActor
+
 import akka.actor.Actor
 import akka.event.Logging
 
