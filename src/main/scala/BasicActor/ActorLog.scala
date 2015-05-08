@@ -9,6 +9,7 @@ import akka.event.Logging
 
 private class Actor10 extends Actor{
   // The log in akka is ash
+  // log also print in console except debug.
   val log = Logging(context.system, this)
   def receive = {
     case "test" => {

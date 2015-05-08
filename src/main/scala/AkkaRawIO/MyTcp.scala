@@ -6,6 +6,6 @@ object MyTcp{
   def main (args: Array[String]) {
     //addr: InetAddress, port: Int
     val address = new InetSocketAddress("www.baidu.com", 80)
-    val client = new TcpClient(address, )
+    //val client = new TcpClient(address, )
   }
 }
