@@ -25,17 +25,22 @@ scala.Map 类型的对象。
 ! Actor 类最好是无状态的。
 
  */
-private class Actor1 extends Actor{
+private class Actor1 extends Actor {
   val log = Logging(context.system, this)
+
   def receive = {
     case "test" => println("test received")
+    // the design of akka actor is exhaustive, means all patterns can be handled.
+    // if the receive partial method you defined not handle all types message.
+    // then akka.actor.UnhandledMessage will be published to Actor System.
     case _ => log.info("unknown message")
   }
 }
 
 // 构造器参数不能是可变的(var),因为 call-by-name 块可能被其它线程调用,引起条件竞争。
-private class Actor2(name: String) extends Actor{
+private class Actor2(name: String) extends Actor {
   val log = Logging(context.system, this)
+
   def receive = {
     case "test" => println("test received")
     case _ => log.info("unknown message")
@@ -49,22 +54,41 @@ class WatchActor(val other: ActorRef) extends Actor {
 
   def receive = {
     case Terminated(other) => println(other.toString + " watched dead.")
+    // case _ =>
   }
 }
 
 object SimpleActor {
-  def main (args: Array[String]) {
+  def main(args: Array[String]) {
     val system = ActorSystem("Demo")
+    //Props to config the actor.
     val actor1 = system.actorOf(Props[Actor1], name = "Actor1")
     actor1 ! "test"
     actor1 ! "other"
 
     // how to create actor with parameter.
+    //just used outside of actors.
     val actor2 = system.actorOf(Props(new Actor2("actor2")), name = "Actor2")
     actor2 ! "test"
     actor2 ! "other"
 
+    // other alternative to create actor with parameter in constructor
+    // the verification of if such constructor existing will be done at runtime.
+    val actor3 = system.actorOf(Props(classOf[Actor2], "Actor3"))
+    actor3 ! "test"
+
+    // then the creation of actor4 will throw exception at runtime.
+    //val actor4 = system.actorOf(Props(classOf[Actor1], "Actor3"))
+    //actor4 ! "test"
+
+    // better way to create actor which constructor has parameter
+    val actor5 = system.actorOf(Props.apply(classOf[Actor2], "actor5"))
+    actor5 ! "test"
+
+    //val actor6 = system.actorOf(Actor2.props)
+
     val watchActor = system.actorOf(Props(new WatchActor(actor2)), name = "WatchActor")
 
+    system.shutdown()
   }
 }

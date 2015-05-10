@@ -8,7 +8,7 @@ object LoadConfigure {
     val ite = config.entrySet.iterator()
     while (ite.hasNext){
       val m = ite.next()
-      println(m.getKey, m.getValue)
+      if(m.getKey.contains("serializers")) println(m.getKey, m.getValue)
     }
   }
 }
